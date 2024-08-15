@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Historial de Actividades
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,29 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Historial</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-grid *ngIf="activities.length > 0">
+    <ion-row>
+      <ion-col size="4" *ngFor="let activity of activities">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Nombre de la actividad: {{ activity.title }}</ion-card-title>
+            <p>Calorías Quemadas: {{ activity.calories }} kcal</p>
+          </ion-card-header>
+          <ion-img [src]="activity.photo" class="activity-photo"></ion-img>
+          <ion-card-content>
+            <ion-icon name="create-outline" (click)="editActivity(activity)"></ion-icon>
+            <ion-icon name="trash-outline" color="danger" (click)="deleteActivity(activity)"></ion-icon>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-text *ngIf="activities.length === 0">
+    <p>No hay actividades registradas.</p>
+  </ion-text>
 </ion-content>

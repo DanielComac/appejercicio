@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PhotoService } from '../servicios/photo.service';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +8,25 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  activities: any[] = [];
 
+  constructor(public photoService: PhotoService) {}
+
+  ionViewWillEnter() {
+    this.loadActivities();
+  }
+
+  loadActivities() {
+    this.activities = this.photoService.activities;
+  }
+
+  editActivity(activity: any) {
+    console.log('Editar actividad:', activity);
+  }
+
+  deleteActivity(activity: any) {
+    console.log('Eliminar actividad:', activity);
+    this.photoService.removeActivity(activity);
+    this.loadActivities();
+  }
 }

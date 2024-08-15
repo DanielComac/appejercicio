@@ -1,17 +1,41 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title>Registro de Actividad</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <form (submit)="registerActivity()" #activityForm="ngForm">
+    <ion-item>
+      <ion-label position="floating">Nombre de la Actividad</ion-label>
+      <ion-input [(ngModel)]="activity.title" name="title" required></ion-input>
+      <ion-note color="danger" *ngIf="activityForm.submitted && !activity.title">El nombre de la actividad es requerido</ion-note>
+    </ion-item>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <ion-item>
+      <ion-label position="floating">Duración de la actividad (minutos)</ion-label>
+      <ion-input type="number" [(ngModel)]="activity.duration" name="duration" required></ion-input>
+      <ion-note color="danger" *ngIf="activityForm.submitted && !activity.duration">Duración es requerida</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Calorías Quemadas</ion-label>
+      <ion-input type="number" [(ngModel)]="activity.calories" name="calories"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Agregar foto de la actividad</ion-label>
+      <ion-button expand="block" (click)="takePhoto()">Seleccionar Foto</ion-button>
+    </ion-item>
+
+    <ion-grid *ngIf="photos.length > 0">
+      <ion-row>
+        <ion-col size="6" *ngFor="let photo of photos; let i = index">
+          <ion-img [src]="photo"></ion-img>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-button type="submit" expand="block">Registrar Actividad</ion-button>
+  </form>
 </ion-content>
