@@ -6,7 +6,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 })
 export class PhotoService {
   public photos: string[] = [];
-  public activities: any[] = [];  // Nuevo array para almacenar actividades
+  public routines: any[] = [];
 
   constructor() { }
 
@@ -23,15 +23,16 @@ export class PhotoService {
       console.error('Error al tomar la foto: webPath no está definido');
     }
   }
-  
 
-  // Método para agregar una actividad
-  public addActivity(activity: any) {
-    this.activities.push(activity);
+  public addRoutine(routine: any) {
+    this.routines.push(routine);
   }
 
-  // Método para eliminar una actividad
-  public removeActivity(activity: any) {
-    this.activities = this.activities.filter(a => a !== activity);
+  public getRoutines() {
+    return this.routines;
+  }
+
+  public removeRoutine(routine: any) {
+    this.routines = this.routines.filter(r => r !== routine);
   }
 }

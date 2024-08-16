@@ -1,18 +1,44 @@
-.activity-photo {
-    width: 90%;
-    height: 150px;
-    object-fit: cover;
+form {
+  ion-item {
+    margin-bottom: 16px;
+  }
+
+  .form-item {
+    --padding-start: 0;
+    --padding-end: 0;
+    --inner-padding-end: 0;
+    --inner-padding-start: 0;
+  }
 }
-  
-  ion-card-content {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    border-radius: 10px;
-  }
-  
-  ion-icon {
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
+
+.header {
+  font-weight: bold;
+  font-size: 23px;
+  margin-bottom: 8px;
+}
+
+.exercise-item {
+  margin-bottom: 16px;
+}
+
+.routine-image {
+  width: 300px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.exercise-image {
+  width: 300px;
+  height: 250px;
+}
+
+.boton {
+  font-size: 14px;
+  padding: 8px 16px;
+  --margin-top: 8px;
+}
+
+.create-button {
+  font-size: 16px;
+  padding: 12px 0;
+}

@@ -1,41 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Registro de Actividad</ion-title>
+    <ion-title>Rutinas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form (submit)="registerActivity()" #activityForm="ngForm">
-    <ion-item>
-      <ion-label position="floating">Nombre de la Actividad</ion-label>
-      <ion-input [(ngModel)]="activity.title" name="title" required></ion-input>
-      <ion-note color="danger" *ngIf="activityForm.submitted && !activity.title">El nombre de la actividad es requerido</ion-note>
+  <ion-list>
+    <ion-item *ngFor="let routine of routines" (click)="viewRoutineDetails(routine.id)">
+      <ion-thumbnail slot="start">
+        <img [src]="routine.img" *ngIf="routine.img" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ routine.nombre }}</h2>
+        <p>Duración de la rutina: {{ routine.duracion }} minutos</p>
+        <p>Días en que se realiza: {{ routine.numdia.join(', ') }}</p>
+        <p>Fecha de creación: {{ routine.createdAt }}</p>
+        <p>Número de ejercicios: {{ routine.ejercicios.length }}</p>
+      </ion-label>
     </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Duración de la actividad (minutos)</ion-label>
-      <ion-input type="number" [(ngModel)]="activity.duration" name="duration" required></ion-input>
-      <ion-note color="danger" *ngIf="activityForm.submitted && !activity.duration">Duración es requerida</ion-note>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Calorías Quemadas</ion-label>
-      <ion-input type="number" [(ngModel)]="activity.calories" name="calories"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Agregar foto de la actividad</ion-label>
-      <ion-button expand="block" (click)="takePhoto()">Seleccionar Foto</ion-button>
-    </ion-item>
-
-    <ion-grid *ngIf="photos.length > 0">
-      <ion-row>
-        <ion-col size="6" *ngFor="let photo of photos; let i = index">
-          <ion-img [src]="photo"></ion-img>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <ion-button type="submit" expand="block">Registrar Actividad</ion-button>
-  </form>
+  </ion-list>
 </ion-content>

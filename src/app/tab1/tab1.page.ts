@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PhotoService } from '../servicios/photo.service';
 
 @Component({
@@ -6,52 +7,16 @@ import { PhotoService } from '../servicios/photo.service';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
-  activity = {
-    title: '',
-    duration: null,
-    calories: null,
-    photo: ''
-  };
+export class Tab1Page implements OnInit {
+  routines: any[] = [];
 
-  constructor(public photoService: PhotoService) {}
+  constructor(private photoService: PhotoService, private router: Router) {}
 
-  async takePhoto() {
-    await this.photoService.addPhoto();
-    if (this.photoService.photos.length > 0) {
-      this.activity.photo = this.photoService.photos[this.photoService.photos.length - 1];
-    }
+  ngOnInit() {
+    this.routines = this.photoService.getRoutines(); // Obtener rutinas del servicio
   }
 
-  registerActivity() {
-    if (!this.activity.title || !this.activity.duration) {
-      console.error('Los campos título y duración son obligatorios.');
-      return;
-    }
-
-    this.photoService.addActivity({
-      title: this.activity.title,
-      duration: this.activity.duration,
-      calories: this.activity.calories,
-      photo: this.activity.photo
-    });
-
-    console.log('Actividad registrada:', this.activity);
-    this.resetForm();
-  }
-
-  resetForm() {
-    this.activity = {
-      title: '',
-      duration: null,
-      calories: null,
-      photo: ''
-    };
-
-    this.photoService.photos = [];
-  }
-
-  get photos() {
-    return this.photoService.photos;
+  viewRoutineDetails(routineId: number) {
+    this.router.navigate([`/rutina/${routineId}`]); // Navegar a la página de detalles
   }
 }
