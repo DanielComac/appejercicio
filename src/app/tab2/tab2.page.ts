@@ -76,6 +76,7 @@ export class Tab2Page {
       createdby: 1
     };
 
+    console.log('Rutina creada:', newRoutine);
     this.photoService.addRoutine(newRoutine);
     this.showConfirmationAlert();
     this.resetForm();
