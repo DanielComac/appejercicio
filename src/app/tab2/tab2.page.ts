@@ -76,7 +76,7 @@ export class Tab2Page {
       createdby: 1
     };
 
-    this.photoService.addRoutine(newRoutine); // Guardar rutina en el servicio
+    this.photoService.addRoutine(newRoutine);
     this.showConfirmationAlert();
     this.resetForm();
   }

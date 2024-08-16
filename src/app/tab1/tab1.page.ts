@@ -13,10 +13,10 @@ export class Tab1Page implements OnInit {
   constructor(private photoService: PhotoService, private router: Router) {}
 
   ngOnInit() {
-    this.routines = this.photoService.getRoutines(); // Obtener rutinas del servicio
+    this.routines = this.photoService.getRoutines(); 
   }
 
   viewRoutineDetails(routineId: number) {
-    this.router.navigate([`/rutina/${routineId}`]); // Navegar a la página de detalles
+    this.router.navigate([`/rutina/${routineId}`]); 
   }
 }
