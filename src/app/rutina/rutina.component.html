@@ -1,0 +1,82 @@
+<ion-content>
+  <div *ngIf="rutina && !isRoutineComplete">
+    <ng-content *ngFor="let ejercicio of rutina.ejercicios; let i = index">
+      <div *ngIf="selectedTab === i">
+        <div *ngIf="!showTimer" class="rutinaContainer">
+          <h1 class="titulo">{{ ejercicios[i].nombre }}</h1>
+          <img src={{ejercicios[i].img}} style="margin-inline: auto; margin-block: 1rem;">
+          <p>Repeticiones: <b>{{ ejercicio.repeticiones }}</b></p>
+          <p style="margin-bottom: 3rem;">Serie actual: <b>{{ ejercicio.serieActual }} de {{ejercicio.series}} </b></p>
+          <!-- Botón para avanzar a la siguiente serie -->
+          <ion-button *ngIf="!showTimer && ejercicio.serieActual < ejercicio.series" (click)="nextSeries()">
+            Completar serie
+            <ion-icon style="margin-left: 1rem;" name="chevron-forward"></ion-icon>
+            <ion-icon style="margin-left: -0.7rem;" name="chevron-forward"></ion-icon>
+          </ion-button>
+          
+          <!-- Next exercise button -->
+          <ion-button *ngIf="!showTimer && ejercicio.serieActual >= ejercicio.series" (click)="nextExercise()">
+            Siguiente ejercicio
+            <ion-icon style="margin-left: 1rem;" name="chevron-forward"></ion-icon>
+            <ion-icon style="margin-left: -0.7rem;" name="chevron-forward"></ion-icon>
+          </ion-button>
+        </div>
+
+        <!-- Timer display -->
+        <div *ngIf="showTimer">
+          <div *ngIf="ejercicio.serieActual >= ejercicio.series" class="percentage-container">
+            <p class="percentage"> {{ (i + 1) / rutina.ejercicios.length * 100 }}</p>
+            <p style="margin-left: -0.25rem;">% Completado</p>
+          </div>
+          <h1 class="titulo">Descanso</h1>
+          <div class="timer">
+            <ion-button color="light" class="seconds" (click)="remove10Seconds()">-10</ion-button>  
+            <p>{{remainingTimeMinutes}}</p>
+            <p class="colon">:</p>
+            <p>{{remainingTimeSeconds}}</p>
+            <ion-button color="light" class="seconds" (click)="add10Seconds()">+10</ion-button>
+          </div>
+          <!--<p *ngIf="ejercicio.serieActual < ejercicio.series">
+            Descanso entre series: {{ remainingTimeMinutes }} : {{ remainingTimeSeconds }}
+          </p>
+          <p *ngIf="ejercicio.serieActual >= ejercicio.series">
+            Descanso entre ejercicios: {{ remainingTimeMinutes }} : {{ remainingTimeSeconds }}
+          </p>-->
+          <div class="restButtons">
+            <ion-button color="light" class="pause" *ngIf="!isTimerStopped" (click)="stopRestTimer()">
+              <ion-icon name="pause"></ion-icon>
+            </ion-button>
+            <ion-button color="light" class="pause" *ngIf="isTimerStopped" (click)="startRestTimer(showTimer && ejercicio.serieActual >= ejercicio.series)">
+              <ion-icon name="play"></ion-icon>
+            </ion-button>
+            <br />
+            <ion-button (click)="skipTimer(showTimer && ejercicio.serieActual >= ejercicio.series)">
+              Saltar descanso
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </ng-content>
+  </div>
+
+  <div *ngIf="isRoutineComplete">
+    <ng-content class="completedRoutine">
+      <h1 class="titulo">¡Rutina completada!</h1>
+      <p class="party">
+        🥳
+      </p>
+      <div class="totalTime">
+        <p>Número de ejercicios: <b>{{rutina.ejercicios.length}}</b></p>
+        <p class="timeTitle"><b>Tiempo total:</b></p>
+        <p><b>{{ totalTimeMinutes }}</b> Minutos</p>
+        <p><b>{{ totalTimeSeconds }}</b> Segundos</p>
+      </div>
+    </ng-content>
+  </div>
+
+  <ion-segment [(ngModel)]="selectedTab" *ngIf="rutina">
+    <ion-segment-button *ngFor="let ejercicio of rutina.ejercicios; let i = index" [value]="i">
+      <ion-label [ngClass]="{'dash': true, 'active': selectedTab === i}"></ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-content>

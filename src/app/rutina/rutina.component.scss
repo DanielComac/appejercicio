@@ -1,0 +1,150 @@
+ion-segment{
+    position: fixed;
+    bottom: -2px;
+    grid-auto-columns: auto;
+    background-color: white;
+    margin-top: auto;
+    box-shadow: 0 -1px 3px 0 rgb(0 0 0 / 0.1), 0 -1px 2px -1px rgb(0 0 0 / 0.1);
+    pointer-events: none;
+    ion-segment-button{
+        width: fit-content !important;
+
+        .segment-button-checked{
+            background: transparent !important;
+        }
+    }
+    ion-icon{
+        scale: 1.5 2;
+    }
+}
+
+.percentage-container{
+    display: flex;
+    gap: 0;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 1rem;
+
+}
+.percentage{
+    width: 4ch;
+    overflow: hidden;
+    white-space: none;
+    height: 2ch;
+    display: inline-block;
+}
+
+.dash{
+    width: 90%;
+    height: 0.5rem;
+    background-color: darkgrey;
+    border-radius: 50rem;
+
+    &.active{
+        background-color: #0054e9;
+    }
+}
+
+.rutinaContainer{
+    display: grid;
+    width: min(80%,600px);
+    margin-inline: auto;
+    text-align: center;
+}
+
+.titulo{
+    text-align: center;
+    margin-block: 4rem 1.5rem;
+    font-weight:600;
+    font-size: 2rem;
+}
+.timer{
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
+    gap: 0.5rem;
+    margin-inline: auto;
+    align-items: center;
+    p{
+        font-size: 4rem;
+        margin-block: 2rem 1.5rem;
+    }
+    .colon{
+        font-size: 2rem;
+    }
+    .seconds{
+        height: 3rem;
+        box-shadow: none;
+        margin-inline: 0.5rem;
+        margin-top: 0.6rem;
+        --box-shadow: none;
+        --border-radius: 0.5rem;
+    }
+}
+
+.restButtons{
+    display: grid;
+    width: fit-content;
+    margin-inline: auto;
+    justify-content: center;
+    .pause{
+        --box-shadow: none;
+        --border-radius: 50%;
+        width: 6rem;
+        height: 6rem;
+        font-size: 2rem;
+        margin-inline: auto;
+        margin-bottom: 3rem;
+    }
+}
+.party{
+    font-size: 5rem;
+    scale: 1.5;
+    width: 7rem;
+    margin-inline: auto;
+    margin-block: 2.5rem 3.5rem;
+    animation: initialAnimation 1.5s ease forwards, pulseAnimation 1.5s ease-in-out 1.5s infinite;
+}
+@keyframes initialAnimation {
+    0% {
+      transform: scale(0) rotate(0deg);
+    }
+    50% {
+      transform: scale(1.5) rotate(-10deg);
+    }
+    100% {
+      transform: scale(1.3) rotate(-5deg);
+    }
+  }
+  
+  @keyframes pulseAnimation {
+    0% {
+      transform: scale(1.3) rotate(-5deg);
+    }
+    50% {
+      transform: scale(1.15) rotate(0deg);
+    }
+    100% {
+      transform: scale(1.3) rotate(-5deg);
+    }
+  }
+.totalTime{
+    display: grid;
+    width: fit-content;
+    justify-content: center;
+    margin-inline: auto;
+    text-align: center;
+    font-size: 1.4rem;
+    p{
+        margin-block: 0.5rem;
+    }
+    .timeTitle{
+        margin-top: 1rem;
+        font-size: 1.8rem;
+    }
+}
+
+.mi-auto{
+    margin-inline: auto;
+}
