@@ -8,7 +8,7 @@
   <div *ngIf="todayRoutines?.length">
     <h2>Rutinas del día de hoy</h2>
     <ion-list style="background: transparent">
-      <ion-item *ngFor="let routine of todayRoutines" (click)="viewRoutineDetails(routine.id)" lines="none" class="routine-item">
+      <ion-item *ngFor="let routine of todayRoutines" lines="none" class="routine-item">
         <ion-thumbnail slot="start">
           <img [src]="routine.img" *ngIf="routine.img" />
         </ion-thumbnail>
@@ -31,14 +31,16 @@
             Ejercicios: {{ routine.ejercicios.length }}
           </p>
         </ion-label>
-        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        <div style="height: 100%; width: 3rem; display: flex; justify-content: center; align-items: center;" (click)="viewRoutineDetails(routine.id)">
+          <ion-icon style="scale: 2;" name="chevron-forward-outline" slot="end"></ion-icon>
+        </div>
       </ion-item>
     </ion-list>
   </div>
   <div *ngIf="tomorrowRoutines?.length">
     <h2>Rutinas para mañana</h2>
     <ion-list style="background: transparent">
-      <ion-item *ngFor="let routine of tomorrowRoutines" (click)="viewRoutineDetails(routine.id)" lines="none" class="routine-item">
+      <ion-item *ngFor="let routine of tomorrowRoutines" lines="none" class="routine-item">
         <ion-thumbnail slot="start">
           <img [src]="routine.img" *ngIf="routine.img" />
         </ion-thumbnail>
@@ -61,17 +63,20 @@
             Ejercicios: {{ routine.ejercicios.length }}
           </p>
         </ion-label>
-        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        <div style="height: 100%; width: 3rem; display: flex; justify-content: center; align-items: center;" (click)="viewRoutineDetails(routine.id)">
+          <ion-icon style="scale: 2;" name="chevron-forward-outline" slot="end"></ion-icon>
+        </div>
       </ion-item>
     </ion-list>
   </div>
   <div *ngIf="otherRoutines?.length">
     <h2>Rutinas para otro día</h2>
     <ion-list style="background: transparent">
-      <ion-item *ngFor="let routine of otherRoutines" (click)="viewRoutineDetails(routine.id)" lines="none" class="routine-item">
+      <ion-item *ngFor="let routine of otherRoutines" lines="none" class="routine-item">
         <!--<ion-thumbnail slot="start">
         </ion-thumbnail>-->
-        <ion-label style="text-align: center;">
+        <ion-label style="text-align: center; position: relative;">
+          <ion-icon (click)="showRemoveAlert(routine.id)" class="delete" name="trash"></ion-icon>
           <h2 style="font-size: 1rem; margin-bottom: 1rem;">{{ routine.nombre }}</h2>
           <img style="max-height: 150px; max-width: 150px; margin-bottom: 1rem;" [src]="routine.img" *ngIf="routine.img" />
           <ion-icon name="barbell" style="height: 100px; width: 100px; color: #0054e9;" *ngIf="!routine.img"></ion-icon>
@@ -94,7 +99,9 @@
             </p>
           </div>
         </ion-label>
-        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        <div style="height: 100%; width: 3rem; display: flex; justify-content: center; align-items: center;" (click)="viewRoutineDetails(routine.id)">
+          <ion-icon style="scale: 2;" name="chevron-forward-outline" slot="end"></ion-icon>
+        </div>
       </ion-item>
     </ion-list>
   </div>
