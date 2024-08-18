@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from '../servicios/photo.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Rutina {
   id: number
@@ -122,20 +122,23 @@ export class RutinaComponent implements OnInit {
     return this.totalTime % 60;
   }
 
-  constructor(private photoService: PhotoService, private route: ActivatedRoute) { }
+  constructor(private photoService: PhotoService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.startTotalTimeTimer();
     this.route.params.subscribe(params => {
       const id = params['id']; // 'id' should match the name in your route
       const rutina = this.photoService.getRoutines(id)
+      if(!rutina){
+        this.router.navigate(['/tabs/tab1'])
+      }
       const newEjercicios = rutina.ejercicios.map((e: any) => {
         return { ...e, serieActual: 1 }
       })
       rutina.ejercicios = newEjercicios
-      console.log(rutina)
       console.log(newEjercicios, rutina.ejercicios)
       this.rutina = rutina
+      console.log(rutina)
     });
   }
 
