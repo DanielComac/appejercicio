@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhotoService } from '../servicios/photo.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -47,7 +48,7 @@ export class Tab1Page implements OnInit {
   //};
   currDay = new Date().getDay()
 
-  constructor(private photoService: PhotoService, private router: Router) {}
+  constructor(private photoService: PhotoService, private router: Router, private alertController: AlertController,) {}
 
   ngOnInit() {
     this.photoService.getRoutines().subscribe((routines: any) => {
@@ -72,5 +73,29 @@ export class Tab1Page implements OnInit {
 
   viewRoutineDetails(routineId: number) {
     this.router.navigate([`/rutina/${routineId}`]); 
+  }
+
+  removeRoutine(id: number){
+    this.photoService.deleteRoutine(id)
+  }
+
+  async showRemoveAlert(id: number) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar rutina',
+      message: '¿Estás seguro de que deseas eliminar esta rutina?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Eliminar',
+          handler: () =>{
+            this.removeRoutine(id)
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }

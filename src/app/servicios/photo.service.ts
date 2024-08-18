@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { Firestore, collection, addDoc, collectionData, doc, docData, setDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, doc, docData, setDoc, deleteDoc } from '@angular/fire/firestore';
 import { map, Observable } from 'rxjs';
 import { getDocs, query, where } from 'firebase/firestore';
 
@@ -55,8 +55,19 @@ export class PhotoService {
     return docData(routineDoc, { idField: 'id' });
   }
 
-
-  public removeRoutine(routine: any) {
-    this.routines = this.routines.filter(r => r !== routine);
+  public deleteRoutine(id: number): Promise<void> {
+    const routineDoc = doc(this.firestore, `rutinas/${id}`);
+    return deleteDoc(routineDoc)
+      .then(() => {
+        console.log(`Document with ID ${id} successfully deleted.`);
+      })
+      .catch((error) => {
+        console.error("Error removing document: ", error);
+      });
   }
+
+
+  //public removeRoutine(routine: any) {
+  //  this.routines = this.routines.filter(r => r !== routine);
+  //}
 }
