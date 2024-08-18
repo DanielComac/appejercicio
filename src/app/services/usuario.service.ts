@@ -6,9 +6,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UsuarioService {
   private userProfileSubject = new BehaviorSubject({
-    pictureUrl: 'https://via.placeholder.com/150',
-    name: 'John Doe',
-    email: 'john.doe@example.com',
+    pictureUrl: '',
+    name: 'Mi usuario',
+    email: 'ejemplo@gmail.com',
     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.'
   });
 

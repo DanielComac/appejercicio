@@ -18,12 +18,12 @@ ion-avatar {
   position: relative;
   z-index: 100;
 
-  img {
+  img, .avatar {
     transition: 0.3s ease;
   }
 
   &.editable {
-    img {
+    img, .avatar {
       opacity: 0.5;
       filter: brightness(0.8);
 
@@ -50,4 +50,10 @@ ion-avatar {
   position: fixed;
   background-color: transparent;
   z-index: 10;
+}
+
+.avatar{
+  height: 100px;
+  width: 100px;
+  color: #111111;
 }

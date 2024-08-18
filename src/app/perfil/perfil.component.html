@@ -8,7 +8,8 @@
   <h2 style="margin-left: 1rem;">Mi perfil</h2>
   <div class="profile-container">
     <ion-avatar (click)="makePhotoEditable()" [ngClass]="{'editable': photoEditable}">
-      <img [src]="userProfile.pictureUrl" alt="Profile Picture" />
+      <img *ngIf="userProfile.pictureUrl" [src]="userProfile.pictureUrl" alt="Foto de perfil" />
+      <ion-icon class="avatar" name="person-circle"></ion-icon>
       <ion-icon class="avatar-edit" name="create"></ion-icon>
     </ion-avatar>
 
@@ -20,7 +21,8 @@
 
       <ion-item>
         <ion-label position="stacked">Email</ion-label>
-        <ion-input [(ngModel)]="userProfile.email" (ngModelChange)="onBlur()" type="email"></ion-input>
+        <!--<ion-input style="pointer-events: none;" [(ngModel)]="userProfile.email" (ngModelChange)="onBlur()" type="email"></ion-input>-->
+        <p>{{userProfile.email}}</p>
       </ion-item>
 
       <ion-item>

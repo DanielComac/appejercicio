@@ -17,7 +17,7 @@ export class PerfilComponent  implements OnInit {
   };
 
   hasInfoChanged = false
-  photoEditable = false;
+  photoEditable = true;
 
   makePhotoEditable(){
     if(this.photoEditable){
