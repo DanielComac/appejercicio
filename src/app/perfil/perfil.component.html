@@ -31,6 +31,7 @@
       </ion-item>
     </ion-list>
     <ion-button style="margin-top: 1rem;" *ngIf="hasInfoChanged" (click)="updateUser()">Actualizar información</ion-button>
+    <ion-button expand="full" color="danger" style="margin-top: 1rem;" (click)="logout()">Cerrar sesión</ion-button>
     <div *ngIf="photoEditable" class="clickAwayListener" (click)="makePhotoNotEditable()"></div>
   </div>
 </ion-content>
