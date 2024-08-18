@@ -16,3 +16,28 @@ ion-content {
     justify-content: center;
   }
   
+  .routine-item {
+    --background: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    margin-bottom: 1rem;
+  }
+  
+  .routine-item:hover {
+    transform: translateY(-2px);
+  }
+  
+  .ion-thumbnail img {
+    border-radius: 8px;
+  }
+  
+  .create-routine-button {
+    --background: #3880ff;
+    --background-hover: #3171e0;
+    --background-activated: #3171e0;
+    --color: #ffffff;
+    margin-top: 20px;
+  }
+  

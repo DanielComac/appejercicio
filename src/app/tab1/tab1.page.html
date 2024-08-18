@@ -8,65 +8,107 @@
   <div *ngIf="todayRoutines?.length">
     <h2>Rutinas del día de hoy</h2>
     <ion-list style="background: transparent">
-      <ion-item *ngFor="let routine of todayRoutines" (click)="viewRoutineDetails(routine.id)">
+      <ion-item *ngFor="let routine of todayRoutines" (click)="viewRoutineDetails(routine.id)" lines="none" class="routine-item">
         <ion-thumbnail slot="start">
           <img [src]="routine.img" *ngIf="routine.img" />
         </ion-thumbnail>
         <ion-label>
           <h2>{{ routine.nombre }}</h2>
-          <p>Duración aproximada   : {{ routine.duracion }} minutos</p>
-          <p>Días en que se realiza: {{ routine.numdia.join(', ') }}</p>
-          <p>Fecha de creación: {{ routine.createdAt }}</p>
-          <p>Número de ejercicios: {{ routine.ejercicios.length }}</p>
+          <p>
+            <ion-icon name="time-outline"></ion-icon>
+            Duración: {{ routine.duracion }} min
+          </p>
+          <p>
+            <ion-icon name="calendar-outline"></ion-icon>
+            Días: {{ routine.numdia.join(', ') }}
+          </p>
+          <p>
+            <ion-icon name="create-outline"></ion-icon>
+            Creación: {{ routine.createdAt }}
+          </p>
+          <p>
+            <ion-icon name="barbell-outline"></ion-icon>
+            Ejercicios: {{ routine.ejercicios.length }}
+          </p>
         </ion-label>
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
       </ion-item>
     </ion-list>
   </div>
   <div *ngIf="tomorrowRoutines?.length">
     <h2>Rutinas para mañana</h2>
     <ion-list style="background: transparent">
-      <ion-item *ngFor="let routine of tomorrowRoutines" (click)="viewRoutineDetails(routine.id)">
+      <ion-item *ngFor="let routine of tomorrowRoutines" (click)="viewRoutineDetails(routine.id)" lines="none" class="routine-item">
         <ion-thumbnail slot="start">
           <img [src]="routine.img" *ngIf="routine.img" />
         </ion-thumbnail>
         <ion-label>
           <h2>{{ routine.nombre }}</h2>
-          <p>Duración aproximada   : {{ routine.duracion }} minutos</p>
-          <p>Días en que se realiza: {{ routine.numdia.join(', ') }}</p>
-          <p>Fecha de creación: {{ routine.createdAt }}</p>
-          <p>Número de ejercicios: {{ routine.ejercicios.length }}</p>
+          <p>
+            <ion-icon name="time-outline"></ion-icon>
+            Duración: {{ routine.duracion }} min
+          </p>
+          <p>
+            <ion-icon name="calendar-outline"></ion-icon>
+            Días: {{ routine.numdia.join(', ') }}
+          </p>
+          <p>
+            <ion-icon name="create-outline"></ion-icon>
+            Creación: {{ routine.createdAt }}
+          </p>
+          <p>
+            <ion-icon name="barbell-outline"></ion-icon>
+            Ejercicios: {{ routine.ejercicios.length }}
+          </p>
         </ion-label>
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
       </ion-item>
     </ion-list>
   </div>
   <div *ngIf="otherRoutines?.length">
     <h2>Rutinas para otro día</h2>
     <ion-list style="background: transparent">
-      <ion-item *ngFor="let routine of otherRoutines" (click)="viewRoutineDetails(routine.id)">
-        <ion-thumbnail slot="start">
-          <img [src]="routine.img" *ngIf="routine.img" />
-        </ion-thumbnail>
-        <ion-label>
-          <h2>{{ routine.nombre }}</h2>
-          <p>Duración aproximada   : {{ routine.duracion }} minutos</p>
-          <p>Días en que se realiza: {{ routine.numdia.join(', ') }}</p>
-          <p>Fecha de creación: {{ routine.createdAt }}</p>
-          <p>Número de ejercicios: {{ routine.ejercicios.length }}</p>
+      <ion-item *ngFor="let routine of otherRoutines" (click)="viewRoutineDetails(routine.id)" lines="none" class="routine-item">
+        <!--<ion-thumbnail slot="start">
+        </ion-thumbnail>-->
+        <ion-label style="text-align: center;">
+          <h2 style="font-size: 1rem; margin-bottom: 1rem;">{{ routine.nombre }}</h2>
+          <img style="max-height: 150px; max-width: 150px; margin-bottom: 1rem;" [src]="routine.img" *ngIf="routine.img" />
+          <ion-icon name="barbell" style="height: 100px; width: 100px; color: #0054e9;" *ngIf="!routine.img"></ion-icon>
+          <div style="display: grid; grid-template-columns: repeat(2);">
+            <p>
+              <ion-icon name="time-outline"></ion-icon>
+              Duración: {{ routine.duracion }} min
+            </p>
+            <!--<p>
+              <ion-icon name="calendar-outline"></ion-icon>
+              Días: {{ routine.numdia.join(', ') }}
+            </p>
+            <p>
+              <ion-icon name="create-outline"></ion-icon>
+              Creación: {{ routine.createdAt }}
+            </p>-->
+            <p>
+              <ion-icon name="barbell-outline"></ion-icon>
+              Ejercicios: {{ routine.ejercicios.length }}
+            </p>
+          </div>
         </ion-label>
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
       </ion-item>
     </ion-list>
   </div>
-  <ion-button routerLink="/tabs/crearRutina">
-    <ion-icon style="margin-right: 0.5rem; margin-top: -0.08rem;" name="add"></ion-icon>
+  <ion-button expand="full" routerLink="/tabs/crearRutina" class="create-routine-button">
+    <ion-icon slot="start" name="add"></ion-icon>
     Crear nueva rutina
   </ion-button>
 </ion-content>
 <ion-content *ngIf="!routines.length" class="ion-padding">
   <ion-item>
-    <ion-label>
+    <ion-label class="ion-text-center">
       <h2>No tienes ninguna rutina. ¡Empieza a hacer una!</h2><br />
-      <ion-button routerLink="/tabs/crearRutina">
-        <ion-icon style="margin-right: 0.5rem; margin-top: -0.08rem;" name="add"></ion-icon>
+      <ion-button expand="full" routerLink="/tabs/crearRutina" class="create-routine-button">
+        <ion-icon slot="start" name="add"></ion-icon>
         Crear rutina
       </ion-button>
     </ion-label>
