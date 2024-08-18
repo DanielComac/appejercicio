@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-icon class="logo" name="heart-circle-outline"></ion-icon>
+      <ion-icon routerLink="/tabs/tab1" class="logo" name="heart-circle-outline"></ion-icon>
     </ion-buttons>
-    <ion-title>RoutineTracker</ion-title>
+    <ion-title routerLink="/tabs/tab1">RoutineTracker</ion-title>
     <ion-buttons slot="end">
       <ion-button *ngIf="!imgPerfil" routerLink="/tabs/perfil">
         <ion-icon style="scale: 2; margin-right: 0.5rem;" name="person-circle"></ion-icon>

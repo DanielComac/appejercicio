@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhotoService } from '../servicios/photo.service';
@@ -51,10 +50,13 @@ export class Tab1Page implements OnInit {
   constructor(private photoService: PhotoService, private router: Router) {}
 
   ngOnInit() {
-    this.routines = this.photoService.getRoutines()
-    //this.routines = [this.routine, this.routine, this.routine]1
+    this.photoService.getRoutines().subscribe((routines: any) => {
+      this.routines = routines;
+      console.log(this.routines);  // Optional: Log the routines to verify the data
+    }, (error: any) => {
+      console.error('Error fetching routines:', error);  // Handle errors if needed
+    });
   }
-
   get todayRoutines(): any[]{
     return this.routines.filter(r => r.numdia.includes(this.currDay.toString()))
   }

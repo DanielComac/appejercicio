@@ -4,7 +4,8 @@
       <div *ngIf="selectedTab === i">
         <div *ngIf="!showTimer" class="rutinaContainer">
           <h1 class="titulo">{{ ejercicio.nombre }}</h1>
-          <img src={{ejercicio.img}} style="margin-inline: auto; margin-block: 1rem;">
+          <img *ngIf="ejercicio.img" src={{ejercicio.img}} style="margin-inline: auto; margin-block: 1rem;">
+          <ion-icon name="barbell" style="height: 100px; width: 100px; color: #0054e9; margin-inline: auto;" *ngIf="!ejercicio.img"></ion-icon>
           <p>Repeticiones: <b>{{ ejercicio.repeticiones }}</b></p>
           <p style="margin-bottom: 3rem;">Serie actual: <b>{{ ejercicio.serieActual }} de {{ejercicio.series}} </b></p>
           <!-- Botón para avanzar a la siguiente serie -->

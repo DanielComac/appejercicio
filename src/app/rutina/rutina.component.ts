@@ -128,19 +128,30 @@ export class RutinaComponent implements OnInit {
     this.startTotalTimeTimer();
     this.route.params.subscribe(params => {
       const id = params['id']; // 'id' should match the name in your route
-      const rutina = this.photoService.getRoutines(id)
-      if(!rutina){
-        this.router.navigate(['/tabs/tab1'])
-      }
-      const newEjercicios = rutina.ejercicios.map((e: any) => {
-        return { ...e, serieActual: 1 }
-      })
-      rutina.ejercicios = newEjercicios
-      console.log(newEjercicios, rutina.ejercicios)
-      this.rutina = rutina
-      console.log(rutina)
+      this.photoService.getRoutine(id).subscribe((rutina: any) => {
+        // Assuming rutinas is an array and you need to find the specific routine by id
+        console.log(rutina, id)
+        //const rutina = rutinas.find((r: any) => r.id.toString() === id);
+        
+        ////if (!rutina) {
+        ////  this.router.navigate(['/tabs/tab1']);
+        ////  return;
+        ////}
+  
+        //// Add serieActual to each exercise in the routine
+        const newEjercicios = rutina.ejercicios.map((e: any) => {
+          return { ...e, serieActual: 1 };
+        });
+  
+        rutina.ejercicios = newEjercicios;
+        //console.log(newEjercicios, rutina.ejercicios);
+  
+        this.rutina = rutina;
+        //console.log(rutina);
+      });
     });
   }
+  
 
   startTotalTimeTimer() {
     this.totalTimeInterval = setInterval(() => {
