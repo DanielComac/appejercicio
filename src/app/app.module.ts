@@ -12,9 +12,16 @@ import { FormsModule } from '@angular/forms';
 import { CrearRutinaComponent } from './crear-rutina/crear-rutina.component';
 import { PerfilComponent } from './perfil/perfil.component';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from '../environments/environment';
+
 @NgModule({
-  declarations: [AppComponent, RutinaComponent, CrearRutinaComponent, PerfilComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule],
+  declarations: [
+    AppComponent, RutinaComponent, CrearRutinaComponent, PerfilComponent],
+  imports: [
+    BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, AngularFireModule.initializeApp(environment.firebaseConfig), AngularFireAuthModule 
+  ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     PhotoService
