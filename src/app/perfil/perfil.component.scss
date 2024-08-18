@@ -1,0 +1,53 @@
+.profile-container {
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 1rem;
+
+  ion-avatar {
+    margin-bottom: 15px;
+    width: 100px;
+    height: 100px;
+  }
+
+  ion-list {
+    margin-top: 10px;
+  }
+}
+
+ion-avatar {
+  position: relative;
+  z-index: 100;
+
+  img {
+    transition: 0.3s ease;
+  }
+
+  &.editable {
+    img {
+      opacity: 0.5;
+      filter: brightness(0.8);
+
+    }
+
+    .avatar-edit {
+      opacity: 1;
+    }
+  }
+
+  .avatar-edit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-15%, -30%);
+    scale: 2;
+    opacity: 0;
+    transition: 0.2s ease;
+  }
+}
+
+.clickAwayListener {
+  inset: 0;
+  position: fixed;
+  background-color: transparent;
+  z-index: 10;
+}

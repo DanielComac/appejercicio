@@ -1,0 +1,108 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registrar una Rutina</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h2 style="margin-bottom: 0;" class="ion-padding">Registrar una rutina</h2>
+  <form (submit)="createRoutine()" #routineForm="ngForm">
+    <ion-list class="form-container" [inset]="true">
+      <ion-item class="form-item">
+        <ion-label position="stacked">Nombre de la Rutina</ion-label>
+        <ion-input [(ngModel)]="routine.name" name="name" required></ion-input>
+      </ion-item>
+
+      <ion-item class="form-item">
+        <ion-label position="stacked">Descripción</ion-label>
+        <ion-textarea [(ngModel)]="routine.description" name="description" required></ion-textarea>
+      </ion-item>
+
+      <ion-item class="form-item">
+        <ion-label position="stacked">Duración (minutos)</ion-label>
+        <ion-input type="number" [(ngModel)]="routine.duration" name="duration" required></ion-input>
+      </ion-item>
+
+      <ion-item class="form-item">
+        <ion-label position="stacked">Descanso entre series (segundos)</ion-label>
+        <ion-input type="number" [(ngModel)]="routine.restTime" name="restTime" required></ion-input>
+      </ion-item>
+
+      <ion-item class="form-item">
+        <ion-label>Días de la Rutina</ion-label>
+        <ion-select multiple="true" [(ngModel)]="routine.days" name="days">
+          <ion-select-option value="0">Domingo</ion-select-option>
+          <ion-select-option value="1">Lunes</ion-select-option>
+          <ion-select-option value="2">Martes</ion-select-option>
+          <ion-select-option value="3">Miércoles</ion-select-option>
+          <ion-select-option value="4">Jueves</ion-select-option>
+          <ion-select-option value="5">Viernes</ion-select-option>
+          <ion-select-option value="6">Sábado</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="form-item">
+        <!--<ion-label>Imagen de la Rutina</ion-label>-->
+        <ion-label style="text-align: center; margin-left: 1rem;">
+          <ion-button *ngIf="!routine.imageUrl" style="width: 90%; margin-inline: auto;" (click)="selectImageForRoutine()">Agregar Imagen</ion-button>
+          <ion-button *ngIf="routine.imageUrl" style="margin-right: 0.5rem;" (click)="selectImageForRoutine()">Cambiar</ion-button>
+          <ion-button *ngIf="routine.imageUrl" style="margin-right: -0.5rem;" color="danger"  (click)="removeImageForRoutine()">Eliminar</ion-button>
+          <ion-img *ngIf="routine.imageUrl" [src]="routine.imageUrl" class="routine-image"></ion-img>
+        </ion-label>
+      </ion-item>
+<!--
+      <ion-item class="form-item" *ngIf="routine.imageUrl">
+      </ion-item>-->
+    </ion-list>
+
+    <!-- Ejercicios Section -->
+    <h2 style="margin-bottom: 0;" class="ion-padding">Ejercicios</h2>
+    <ion-list *ngIf="routine?.exercises?.length" class="form-container" style="background: transparent;"  [inset]="true">
+      <!--<ion-list-header>
+        <ion-label class="header">Ejercicios</ion-label>
+      </ion-list-header>-->
+      <div *ngFor="let exercise of routine.exercises; let i = index" class="exercise-item" style="margin-bottom: 2rem; background-color: white; padding-block: 1rem;">
+        <ion-item class="form-item">
+          <ion-label position="stacked">Nombre del Ejercicio</ion-label>
+          <ion-input [(ngModel)]="exercise.name" name="exercise-{{i}}-name" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Descripción</ion-label>
+          <ion-textarea [(ngModel)]="exercise.descripcion" name="exercise-{{i}}-descripcion"></ion-textarea>
+        </ion-item>
+
+        <ion-item class="form-item">
+          <ion-label position="stacked">Series</ion-label>
+          <ion-input type="number" [(ngModel)]="exercise.series" name="exercise-{{i}}-series" required></ion-input>
+        </ion-item>
+
+        <ion-item class="form-item">
+          <ion-label position="stacked">Repeticiones</ion-label>
+          <ion-input type="number" [(ngModel)]="exercise.reps" name="exercise-{{i}}-reps" required></ion-input>
+        </ion-item>
+
+        <!--<ion-item class="form-item">
+          <ion-label>Imagen del Ejercicio</ion-label>
+          <ion-button expand="full" (click)="selectImageForExercise(exercise)">Seleccionar Imagen</ion-button>
+          <ion-img [src]="exercise.imageUrl" *ngIf="exercise.imageUrl" class="exercise-image"></ion-img>
+        </ion-item>-->
+        <ion-item class="form-item">
+          <ion-label style="text-align: center; margin-left: 1rem;">
+            <ion-button *ngIf="!exercise.imageUrl" style="width: 90%; margin-inline: auto;" (click)="selectImageForExercise(exercise)">Agregar Imagen</ion-button>
+            <ion-button *ngIf="exercise.imageUrl" style="margin-right: 0.5rem;" (click)="selectImageForExercise(exercise)">Cambiar</ion-button>
+            <ion-button *ngIf="exercise.imageUrl" style="margin-right: -0.5rem;" color="danger"  (click)="removeImageForExercise(exercise)">Eliminar</ion-button>
+            <ion-img *ngIf="exercise.imageUrl" [src]="exercise.imageUrl" class="routine-image"></ion-img>
+          </ion-label>
+        </ion-item>
+        <div style="display: flex; justify-content: end; padding-right: 0.4rem;">
+          <ion-button class="boton" style="scale: 0.9;" color="danger" (click)="removeExercise(i)">Eliminar Ejercicio</ion-button>
+        </div>
+      </div>
+    </ion-list>
+    <ion-button class="boton" style="margin-left: 0.8rem; margin-bottom: 2rem; scale: 0.9;" (click)="addExercise()">Agregar ejercicio</ion-button>
+
+
+    <ion-button type="submit" expand="full" class="create-button">Crear Rutina</ion-button>
+  </form>
+</ion-content>
