@@ -17,7 +17,6 @@ const routes: Routes = [
   {
     path: 'rutina/:id',
     component: RutinaComponent
-    //loadChildren: () => import('./')
   }
 ];
 
