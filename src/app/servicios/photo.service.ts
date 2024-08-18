@@ -28,7 +28,10 @@ export class PhotoService {
     this.routines.push(routine);
   }
 
-  public getRoutines() {
+  public getRoutines(id?: number) {
+    if(id){
+      return this.routines.find(r => r.id == id)
+    }
     return this.routines;
   }
 

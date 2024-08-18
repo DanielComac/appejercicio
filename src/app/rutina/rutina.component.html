@@ -3,8 +3,8 @@
     <ng-content *ngFor="let ejercicio of rutina.ejercicios; let i = index">
       <div *ngIf="selectedTab === i">
         <div *ngIf="!showTimer" class="rutinaContainer">
-          <h1 class="titulo">{{ ejercicios[i].nombre }}</h1>
-          <img src={{ejercicios[i].img}} style="margin-inline: auto; margin-block: 1rem;">
+          <h1 class="titulo">{{ ejercicio.nombre }}</h1>
+          <img src={{ejercicio.img}} style="margin-inline: auto; margin-block: 1rem;">
           <p>Repeticiones: <b>{{ ejercicio.repeticiones }}</b></p>
           <p style="margin-bottom: 3rem;">Serie actual: <b>{{ ejercicio.serieActual }} de {{ejercicio.series}} </b></p>
           <!-- Botón para avanzar a la siguiente serie -->

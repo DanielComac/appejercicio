@@ -9,9 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RutinaComponent } from './rutina/rutina.component';
 import { FormsModule } from '@angular/forms';
+import { CrearRutinaComponent } from './crear-rutina/crear-rutina.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
-  declarations: [AppComponent, RutinaComponent],
+  declarations: [AppComponent, RutinaComponent, CrearRutinaComponent, PerfilComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h2 style="margin-left: 1rem;">Mi perfil</h2>
+  <div class="profile-container">
+    <ion-avatar (click)="makePhotoEditable()" [ngClass]="{'editable': photoEditable}">
+      <img [src]="userProfile.pictureUrl" alt="Profile Picture" />
+      <ion-icon class="avatar-edit" name="create"></ion-icon>
+    </ion-avatar>
+
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input [(ngModel)]="userProfile.name" (ngModelChange)="onBlur()"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input [(ngModel)]="userProfile.email" (ngModelChange)="onBlur()" type="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Bio</ion-label>
+        <ion-textarea [(ngModel)]="userProfile.bio" (ngModelChange)="onBlur()"></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-button style="margin-top: 1rem;" *ngIf="hasInfoChanged" (click)="updateUser()">Actualizar información</ion-button>
+    <div *ngIf="photoEditable" class="clickAwayListener" (click)="makePhotoNotEditable()"></div>
+  </div>
+</ion-content>
