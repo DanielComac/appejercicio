@@ -15,6 +15,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { environment } from '../environments/environment';
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    PhotoService
+    PhotoService, AuthGuard
   ],
   bootstrap: [AppComponent],
 })
